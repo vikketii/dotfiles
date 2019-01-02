@@ -1,0 +1,2 @@
+dotfiles=(.bash_aliases .bashrc .vimrc .Xresources)
+dotfiles_config=(.compton .i3 .i3status .rofi .zathura)
