@@ -33,15 +33,13 @@ install_configs() {
         # Backup to ~/.dotfiles.orig
         for dots in "${dotfiles[@]}"
         do
-            /bin/cp -rf ~/${dots} $backupdir
-            # &> /dev/null
+            /bin/cp -rf ~/${dots} $backupdir &> /dev/null
         done
 
         # Backup dotfiles_config to ~/.dotfiles.orig/.config
         for dots_conf in "${dotfiles_config[@]//./}"
         do
-            /bin/cp -rf ~/.config/${dots_conf} $backupdir/.config
-            # &> /dev/null
+            /bin/cp -rf ~/.config/${dots_conf} $backupdir/.config &> /dev/null
         done
 
         # Output
@@ -50,14 +48,23 @@ install_configs() {
         echo -e "It's used to backup and restore your old config.\n" >&2
     fi
 
-    #mkdir -p ~/testing/.config
-    #for dots_conf in "${dotfiles_config[@]}"
-    #do
-    #    /bin/rm -rf ~/testing/.config/${dots_conf[@]//./}
-    #    /bin/ln -fs "$dotfilesdir/test/${dots_conf}" ~/testing/${dots_conf[@]//./}
-    #done
+    # Install dotfiles to ~
+    for dots in "${dotfiles[@]}"
+    do
+        /bin/rm -rf ~/${dots}
+        /bin/ln -fs "$dotfilesdir/${dots}" ~/
+    done
 
-    echo -e "\nYour dotfiles are not synced yet, but they are backed up."
+    # Install dotfiles_config to ~/.config
+    mkdir -p ~/.config
+    for dots_conf in "${dotfiles_config[@]}"
+    do
+        /bin/rm -rf ~/.config/${dots_conf[@]//./}
+        /bin/ln -fs "$dotfilesdir/${dots_conf}" ~/.config/${dots_conf[@]//./}
+    done
+
+    echo -e "New dotfiles are installed!\n" >&2
+    #echo -e "To restore old config, you can use './install.sh -r' command." >&2
 }
 
 
@@ -83,6 +90,10 @@ case "$CMD" in
         then
             install_packages
         fi
+        ;;
+    -r)
+        echo "Config restore is not implemented yet :/" >&2
+        exit 1
         ;;
     *)
         echo "Command not found" >&2
