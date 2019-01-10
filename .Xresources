@@ -1,6 +1,6 @@
 URxvt.termName: rxvt-256color
 !
-URxvt.font: xft:Hack:size=11
+URxvt.font: xft:Hack:size=9
 !
 URxvt.scrollBar: False
 !
