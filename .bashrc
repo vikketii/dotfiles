@@ -9,5 +9,8 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
+    . ~/.bash_aliases
+fi
+if [ -f ~/.secret_aliases ]; then
+    . ~/.secret_aliases
 fi

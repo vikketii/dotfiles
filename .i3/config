@@ -10,6 +10,9 @@ set $compositor compton --config ~/.config/compton/config
 ############################################
 # Start programs
 
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
 # X compositor to improve various graphic things
 # exec_always --no-startup-id pkill compton
 exec --no-startup-id $compositor
@@ -90,16 +93,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3 "
-set $ws4 "4 "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9 "
-set $ws10 "10 "
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -151,19 +154,19 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar
-bar {
-    status_command i3status -c /home/$USER/.config/i3status/i3status.conf
-    colors {
-        background #222222
-    }
-	#font pango: Hack, FontAwesome 11
-}
+#bar {
+#    status_command i3status -c /home/$USER/.config/i3status/i3status.conf
+#    colors {
+#        background #222222
+#    }
+#	#font pango: Hack, FontAwesome 11
+#}
 
 # disable titlebars
 for_window [class="^.*"] border pixel 6
 
 # wallpaper
-exec --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
+exec_always --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
 
 
 ############################################
@@ -199,4 +202,4 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
 
 smart_gaps on
 gaps inner 10
-#gaps outer 10
+#gaps outer 2
