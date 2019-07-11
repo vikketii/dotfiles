@@ -2,9 +2,6 @@
 # Variables
 
 set $mod Mod4
-# set PrintScreen key to Left Super key
-exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
-
 set $compositor compton --config ~/.config/compton/config
 
 ############################################
@@ -20,6 +17,8 @@ exec --no-startup-id $compositor
 # Change keyboard layout uk/fi
 exec --no-startup-id setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle"
 
+# Hide mouse after n seconds with unclutter
+exec_always --no-startup-id unclutter --timeout 5
 
 ############################################
 # Basic settings
@@ -35,8 +34,8 @@ bindsym $mod+Return  exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 # disable Control+q
 bindsym Control+q    exec /bin/false
-bindsym $mod+d exec  rofi -show run
-bindsym $mod+Shift+d exec rofi -show ssh
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Shift+d exec --no-startup-id rofi -show ssh
 #bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -170,12 +169,23 @@ exec_always --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
 
 
 ############################################
+# Scratchpad
+
+# Current focus to scratchpad
+bindsym $mod+Shift+P move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+P scratchpad show
+
+
+############################################
 # Spesific program instructions
 
 for_window [title="Friends List"] floating enable
+# for_window [title="floating timestable"] floating enable
 for_window [title="Telegram"] move to workspace $ws4
 for_window [class="Steam"] move to workspace $ws9
-for_window [class="Steam"] fullscreen
+#for_window [class="Steam"] fullscreen
 for_window [class="Spotify"] move to workspace $ws10
 for_window [class="Spotify"] fullscreen
 
@@ -196,6 +206,8 @@ bindsym $mod+Control+Left  exec playerctl previous
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 3
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
 
+# PrintScreen key to Left Super key
+exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
 
 #############################################
 # Gaps

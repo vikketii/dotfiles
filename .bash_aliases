@@ -2,7 +2,7 @@
 ## shorts
 
 alias maim-cp='maim -s | xclip -selection clipboard -t image/png'
-alias up='sudo pacman -Syu && task'
+alias up='sudo pacman -Syu'
 alias ..='cd ..'
 alias all='ls -Alh'
 
@@ -10,6 +10,7 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
+alias vcv="cd ~/bin/Rack; ./Rack &"
 ############################################################
 ## improving basic programs
 

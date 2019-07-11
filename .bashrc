@@ -11,6 +11,24 @@ PS1='[\u@\h \W]\$ '
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-if [ -f ~/.secret_aliases ]; then
-    . ~/.secret_aliases
+if [ -f ~/.bash_secret_aliases ]; then
+    . ~/.bash_secret_aliases
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/vikke/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/vikke/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/vikke/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/vikke/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+eval "$(thefuck --alias)"

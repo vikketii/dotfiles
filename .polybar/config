@@ -68,7 +68,7 @@ font-3 = fontawesome:size=11;0
 
 modules-left = i3
 modules-center = spotify
-modules-right = xbacklight pulseaudio xkeyboard cpu filesystem wlan eth battery0 battery1 date
+modules-right = pulseaudio xbacklight xkeyboard cpu filesystem wlan eth battery0 battery1 date
 
 tray-position = right
 tray-padding = 1
@@ -172,7 +172,7 @@ label-unfocused = %index%: %icon%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%: %index%
+label-urgent = %index%: %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
