@@ -3,8 +3,10 @@
 
 alias maim-cp='maim -s | xclip -selection clipboard -t image/png'
 alias up='sudo pacman -Syu'
+alias check='journalctl -p 3 -xb; sudo systemctl --failed'
 alias ..='cd ..'
 alias all='ls -Alh'
+alias c='clear'
 
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
