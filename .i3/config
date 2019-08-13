@@ -34,29 +34,18 @@ bindsym $mod+Shift+q kill
 bindsym Control+q    exec /bin/false
 bindsym $mod+d exec  rofi -show run
 bindsym $mod+Shift+d exec rofi -show ssh
+bindsym $mod+Shift+L exec light-locker-command -l
 #bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-# move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -163,7 +152,7 @@ bar {
 for_window [class="^.*"] border pixel 6
 
 # wallpaper
-exec --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
+exec_always --no-startup-id feh --bg-fill ~/pics/wallpaper/wp.png
 
 
 ############################################
@@ -172,26 +161,22 @@ exec --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
 for_window [title="Friends List"] floating enable
 for_window [title="Telegram"] move to workspace $ws4
 for_window [class="Steam"] move to workspace $ws9
-for_window [class="Steam"] fullscreen
 for_window [class="Spotify"] move to workspace $ws10
-for_window [class="Spotify"] fullscreen
 
+exec --no-startup-id spotify
 
 ############################################
 # Added keybindings
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 1 +3% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 1 -3% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +3% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -3% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 # Media player controls
-bindsym $mod+Control+Down  exec playerctl play-pause
-bindsym $mod+Control+Right exec playerctl next
-bindsym $mod+Control+Left  exec playerctl previous
-
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 3
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
+bindsym XF86AudioPause   exec playerctl play-pause
+bindsym XF86AudioNext    exec playerctl next
+bindsym XF86AudioPrev    exec playerctl previous
 
 
 #############################################
