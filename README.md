@@ -11,5 +11,3 @@ Heavily influenced by dikiaap's
 ## Todo
 - setup private configs
 - write a setup
-- pacman install list
-- AUR packages
