@@ -4,7 +4,7 @@ CMD="$1"
 dotfilesdir=$(pwd)
 backupdir=~/.dotfiles.orig
 dotfiles=(.bash_aliases .bashrc .vimrc .Xresources)
-dotfiles_config=(.compton .i3 .i3status .rofi .zathura)
+dotfiles_config=(.compton .i3 .i3status .rofi .zathura .polybar)
 
 
 printusage() {

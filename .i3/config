@@ -2,13 +2,13 @@
 # Variables
 
 set $mod Mod4
-# set PrintScreen key to Left Super key
-exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
-
 set $compositor compton --config ~/.config/compton/config
 
 ############################################
 # Start programs
+
+# Polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # X compositor to improve various graphic things
 # exec_always --no-startup-id pkill compton
@@ -17,6 +17,8 @@ exec --no-startup-id $compositor
 # Change keyboard layout uk/fi
 exec --no-startup-id setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle"
 
+# Hide mouse after n seconds with unclutter
+exec_always --no-startup-id unclutter --timeout 5
 
 ############################################
 # Basic settings
@@ -30,10 +32,12 @@ floating_modifier $mod
 
 bindsym $mod+Return  exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
+
 # disable Control+q
 bindsym Control+q    exec /bin/false
-bindsym $mod+d exec  rofi -show run
-bindsym $mod+Shift+d exec rofi -show ssh
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Shift+d exec --no-startup-id rofi -show ssh
+
 #bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -90,16 +94,16 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3 "
-set $ws4 "4 "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9 "
-set $ws10 "10 "
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -151,28 +155,39 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar
-bar {
-    status_command i3status -c /home/$USER/.config/i3status/i3status.conf
-    colors {
-        background #222222
-    }
-	#font pango: Hack, FontAwesome 11
-}
+#bar {
+#    status_command i3status -c /home/$USER/.config/i3status/i3status.conf
+#    colors {
+#        background #222222
+#    }
+#	#font pango: Hack, FontAwesome 11
+#}
 
 # disable titlebars
 for_window [class="^.*"] border pixel 6
 
 # wallpaper
-exec --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
+exec_always --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
+
+
+############################################
+# Scratchpad
+
+# Current focus to scratchpad
+bindsym $mod+Shift+P move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+P scratchpad show
 
 
 ############################################
 # Spesific program instructions
 
 for_window [title="Friends List"] floating enable
+# for_window [title="floating timestable"] floating enable
 for_window [title="Telegram"] move to workspace $ws4
 for_window [class="Steam"] move to workspace $ws9
-for_window [class="Steam"] fullscreen
+#for_window [class="Steam"] fullscreen
 for_window [class="Spotify"] move to workspace $ws10
 for_window [class="Spotify"] fullscreen
 
@@ -180,23 +195,25 @@ for_window [class="Spotify"] fullscreen
 ############################################
 # Added keybindings
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +3% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -3% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Media player controls
-bindsym $mod+Control+Down  exec playerctl play-pause
-bindsym $mod+Control+Right exec playerctl next
-bindsym $mod+Control+Left  exec playerctl previous
-
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 3
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
-
+# # Pulse Audio controls
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +3% #increase sound volume
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -3% #decrease sound volume
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#
+# # Media player controls
+# bindsym $mod+Control+Down  exec playerctl play-pause
+# bindsym $mod+Control+Right exec playerctl next
+# bindsym $mod+Control+Left  exec playerctl previous
+#
+# bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 3
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
+#
+# # PrintScreen key to Left Super key
+# exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
 
 #############################################
 # Gaps
 
 smart_gaps on
 gaps inner 10
-#gaps outer 10
+#gaps outer 2
