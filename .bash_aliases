@@ -13,6 +13,7 @@ alias preview="fzf --preview 'bat --color \"always\" {}'"
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 alias vcv="cd ~/bin/Rack; ./Rack &"
+
 ############################################################
 ## improving basic programs
 
@@ -26,6 +27,9 @@ alias ping='prettyping --nolegend'
 
 alias gcm='git commit -m'
 alias ga='git add'
+alias gs='git status'
+alias gl='git log --pretty=oneline --abbrev-commit'
+alias gc='git checkout'
 
 ############################################################
 ## functions

@@ -167,6 +167,10 @@ for_window [class="^.*"] border pixel 6
 # wallpaper
 exec_always --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
 
+hide_edge_borders smart
+
+# class        border  backgr  text    indic   ch_bord
+client.focused #000000 #634e99 #f4f4f4 #000000 #634e99
 
 ############################################
 # Scratchpad
@@ -187,7 +191,7 @@ for_window [title="Telegram"] move to workspace $ws4
 for_window [class="Steam"] move to workspace $ws9
 #for_window [class="Steam"] fullscreen
 for_window [class="Spotify"] move to workspace $ws10
-for_window [class="Spotify"] fullscreen
+#for_window [class="Spotify"] fullscreen
 
 
 ############################################
@@ -213,5 +217,6 @@ exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
 # Gaps
 
 smart_gaps on
-gaps inner 10
-#gaps outer 2
+#smart_borders on
+gaps inner 6
+gaps outer 0

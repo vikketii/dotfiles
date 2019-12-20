@@ -17,12 +17,14 @@
 ;==========================================================
 
 [colors]
-background = #222
+background = #251328
+#background = #222
 # background = #c0111111
 background-alt = #444
 foreground = #dfeaef
 foreground-alt = #708090
-primary = #ffb52a
+#primary = #ffb52a
+primary = #7e63c2
 secondary = #e60053
 alert = #ff5555
 
@@ -39,10 +41,10 @@ filesystem = ${colors.primary}
 [bar/top]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 28
-;offset-x = 1%
+height = 26
+;offset-x = 5%
 ;offset-y = 1%
-radius = 2.0
+radius = 0.0
 fixed-center = true
 
 background = ${colors.background}
@@ -51,11 +53,11 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-bottom-size = 0
 border-color = #00000000
 
 padding-left = 0
-padding-right = 1
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
@@ -67,8 +69,8 @@ font-2 = siji:pixelsize=11;1
 font-3 = fontawesome:size=11;0
 
 modules-left = i3
-modules-center = spotify
-modules-right = pulseaudio xbacklight xkeyboard cpu filesystem wlan eth battery0 battery1 date
+;modules-center = spotify
+modules-right = pulseaudio xbacklight xkeyboard cpu memory filesystem wlan eth battery0 battery1 date
 
 tray-position = right
 tray-padding = 1
@@ -244,8 +246,9 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-underline = #4bffdc
+format-prefix = " "
+format-prefix-foreground = ${colors.cpu}
+format-underline = ${colors.cpu}
 label = %percentage_used%%
 
 
