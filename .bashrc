@@ -31,4 +31,4 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 
-eval "$(thefuck --alias)"
+figlet -f slant 'tikky' | lolcat
