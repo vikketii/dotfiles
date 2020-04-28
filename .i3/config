@@ -2,7 +2,8 @@
 # Variables
 
 set $mod Mod4
-set $compositor compton --config ~/.config/compton/config
+set $compositor picom --config ~/.config/picom.conf
+set $wallpaper ~/media/pics/wallpaper/wp.png
 
 ############################################
 # Start programs
@@ -11,14 +12,19 @@ set $compositor compton --config ~/.config/compton/config
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 # X compositor to improve various graphic things
-# exec_always --no-startup-id pkill compton
 exec --no-startup-id $compositor
 
-# Change keyboard layout uk/fi
-exec --no-startup-id setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle"
+# PrintScreen key to Left Super key
+exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
+
+# Change keyboard layout uk/fi and change capslock to ctrl
+exec --no-startup-id setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle" -option ctrl:nocaps
 
 # Hide mouse after n seconds with unclutter
 exec_always --no-startup-id unclutter --timeout 5
+
+# Network tray icon
+exec --no-startup-id nm-applet --no-agent
 
 ############################################
 # Basic settings
@@ -31,43 +37,31 @@ font pango:Hack 11
 floating_modifier $mod
 
 bindsym $mod+Return  exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal -t floating
+for_window [class="Alacritty" title="floating"] floating enable
+
 bindsym $mod+Shift+q kill
+
 # disable Control+q
 bindsym Control+q    exec /bin/false
+
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec --no-startup-id rofi -show ssh
-#bindsym $mod+d exec dmenu_run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split
-bindsym $mod+h split h
+bindsym $mod+g split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
@@ -136,15 +130,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -152,25 +141,16 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar
-#bar {
-#    status_command i3status -c /home/$USER/.config/i3status/i3status.conf
-#    colors {
-#        background #222222
-#    }
-#	#font pango: Hack, FontAwesome 11
-#}
-
 # disable titlebars
 for_window [class="^.*"] border pixel 6
 
 # wallpaper
-exec_always --no-startup-id feh --bg-scale ~/pics/wallpaper/wp.png
+exec_always --no-startup-id feh --bg-scale $wallpaper
 
 hide_edge_borders smart
 
 # class        border  backgr  text    indic   ch_bord
-client.focused #000000 #634e99 #f4f4f4 #000000 #634e99
+client.focused #af5f5f #af5f5f #f4f4f4 #101010 #af5f5f
 
 ############################################
 # Scratchpad
@@ -186,13 +166,8 @@ bindsym $mod+P scratchpad show
 # Spesific program instructions
 
 for_window [title="Friends List"] floating enable
-# for_window [title="floating timestable"] floating enable
-for_window [title="Telegram"] move to workspace $ws4
 for_window [class="Steam"] move to workspace $ws9
-#for_window [class="Steam"] fullscreen
 for_window [class="Spotify"] move to workspace $ws10
-#for_window [class="Spotify"] fullscreen
-
 
 ############################################
 # Added keybindings
@@ -207,11 +182,11 @@ bindsym $mod+Control+Down  exec playerctl play-pause
 bindsym $mod+Control+Right exec playerctl next
 bindsym $mod+Control+Left  exec playerctl previous
 
-bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 3
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 3
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
-# PrintScreen key to Left Super key
-exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
+# Lock the screen
+bindsym $mod+x exec i3lock -ef -i $wallpaper
 
 #############################################
 # Gaps

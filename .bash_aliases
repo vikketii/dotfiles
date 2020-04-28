@@ -1,12 +1,16 @@
 ############################################################
 ## shorts
 
-alias maim-cp='maim -s | xclip -selection clipboard -t image/png'
+alias all='ls -Alh'
 alias up='sudo pacman -Syu'
 alias check='journalctl -p 3 -xb; sudo systemctl --failed'
+alias maim-cp='maim -s | xclip -selection clipboard -t image/png'
 alias ..='cd ..'
-alias all='ls -Alh'
 alias c='clear'
+alias v='nvim'
+alias vi='nvim'
+alias p='pacman'
+alias sp='sudo pacman'
 
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 # add support for ctrl+o to open selected file in VS Code
@@ -17,6 +21,7 @@ alias vcv="cd ~/bin/Rack; ./Rack &"
 ############################################################
 ## improving basic programs
 
+alias vim='nvim'
 alias cat='bat'
 alias top='htop'
 alias rm='trash'

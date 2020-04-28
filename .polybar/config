@@ -1,30 +1,9 @@
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;==========================================================
-
 [colors]
-background = #251328
-#background = #222
-# background = #c0111111
+background = #303030
 background-alt = #444
 foreground = #dfeaef
 foreground-alt = #708090
-#primary = #ffb52a
-primary = #7e63c2
+primary = #af5f5f
 secondary = #e60053
 alert = #ff5555
 
@@ -39,7 +18,6 @@ spotify = #1db954
 filesystem = ${colors.primary}
 
 [bar/top]
-;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 26
 ;offset-x = 5%
@@ -62,27 +40,22 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-; font-0 = fixed:pixelsize=11;1
 font-0 = hack:pixelsize=11;0
 font-1 = unifont:fontformat=truetype:size=9:antialias=false;0
 font-2 = siji:pixelsize=11;1
 font-3 = fontawesome:size=11;0
 
-modules-left = i3
-;modules-center = spotify
-modules-right = pulseaudio xbacklight xkeyboard cpu memory filesystem wlan eth battery0 battery1 date
+modules-left = i3 
+modules-center = polypomo spotify
+modules-right = pulseaudio backlight xkeyboard cpu wlan eth battery0 battery1 date
 
 tray-position = right
 tray-padding = 1
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
 ;wm-restack = i3
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -105,11 +78,6 @@ format-prefix-underline = ${colors.keyboard}
 label-layout = %layout%
 label-layout-underline = ${colors.keyboard}
 
-# label-indicator-padding = 2
-# label-indicator-margin = 1
-# label-indicator-background = ${colors.secondary}
-# label-indicator-underline = ${colors.secondary}
-
 [module/filesystem]
 type = internal/fs
 interval = 25
@@ -122,28 +90,6 @@ format-mounted-prefix-foreground = ${colors.filesystem}
 label-unmounted =
 label-mounted-underline = ${colors.filesystem}
 format-mounted-prefix-underline = ${colors.filesystem}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 1
-
-label-occupied = %index%
-label-occupied-padding = 1
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 1
-
-; Separator in between workspaces
-; label-separator = |
 
 [module/i3]
 type = internal/i3
@@ -165,23 +111,23 @@ ws-icon-default = 
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%: %icon%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%: %icon%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-padding = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%: %icon%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
 
 label-mode = %mode%
 label-mode-padding = 1
 label-mode-foreground =
-label-mode-background = ${module/bspwm.label-focused-background}
+label-mode-background = ${colors.background-alt}
 
 
 [module/spotify]
@@ -194,45 +140,14 @@ exec = python ~/.config/polybar/custom/spotify_status.py -f '{artist}: {song}'
 format-underline = ${colors.spotify}
 
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-
-[module/xbacklight]
-type = internal/xbacklight
-
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
 format = <label>
 format-prefix-foreground = ${colors.brightness}
 format-underline = ${colors.brightness}
 format-prefix= " "
 label = %percentage%%
-
-# bar-width = 10
-# bar-indicator = |
-# bar-indicator-foreground = #fff
-# bar-indicator-font = 2
-# bar-fill = ─
-# bar-fill-font = 2
-# bar-fill-foreground = #9f78e1
-# bar-empty = ─
-# bar-empty-font = 2
-# bar-empty-foreground = ${colors.foreground-alt}
-
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 
 [module/cpu]
@@ -261,22 +176,11 @@ format-connected = <label-connected>
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.wlan}
 format-connected-underline = ${colors.wlan}
-label-connected = %essid:0:8%
+label-connected = %essid:0:3%
 
 format-disconnected = " down"
 format-disconnected-foreground = ${colors.foreground-alt}
 format-disconnected-underline = ${colors.foreground-alt}
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
-
-# ramp-signal-0 = 
-# ramp-signal-1 = 
-# ramp-signal-2 = 
-# ramp-signal-3 = 
-# ramp-signal-4 = 
-# ramp-signal-foreground = ${colors.foreground-alt}
 
 
 [module/eth]
@@ -325,23 +229,6 @@ format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 format-muted-prefix-foreground = ${colors.foreground-alt}
 format-muted-underline = ${colors.foreground-alt}
-
-# bar-volume-width = 10
-# bar-volume-foreground-0 = #55aa55
-# bar-volume-foreground-1 = #55aa55
-# bar-volume-foreground-2 = #55aa55
-# bar-volume-foreground-3 = #55aa55
-# bar-volume-foreground-4 = #55aa55
-# bar-volume-foreground-5 = #f5a70a
-# bar-volume-foreground-6 = #ff5555
-# bar-volume-gradient = false
-# bar-volume-indicator = |
-# bar-volume-indicator-font = 2
-# bar-volume-fill = ─
-# bar-volume-fill-font = 2
-# bar-volume-empty = ─
-# bar-volume-empty-font = 2
-# bar-volume-empty-foreground = ${colors.foreground-alt}
 
 
 [module/alsa]
@@ -462,9 +349,7 @@ ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
 type = custom/menu
-
 expand-right = true
-
 format-spacing = 1
 
 label-open = 
@@ -503,4 +388,17 @@ screenchange-reload = true
 margin-top = 4
 margin-bottom = 4
 
-; vim:ft=dosini
+
+[module/polypomo]
+type = custom/script
+
+exec = python ~/.config/polybar/custom/polypomo.py
+tail = true
+
+label = %output%
+click-left = python ~/.config/polybar/custom/polypomo.py toggle
+click-right = python ~/.config/polybar/custom/polypomo.py end
+click-middle = python ~/.config/polybar/custom/polypomo.py lock
+scroll-up = python ~/.config/polybar/custom/polypomo.py time +60
+scroll-down = python ~/.config/polybar/custom/polypomo.py time -60
+
