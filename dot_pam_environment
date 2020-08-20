@@ -1,0 +1,27 @@
+# Note: This file is always sourced and should be symlinked to $HOME/.pam_environment
+# .pam_env is read before other files, in particular before /.profile, ~/.bash_profile and ~/.zshenv.
+# Settings env variables here allows them to be used in all shells
+
+# Set XDG Base Directories
+XDG_CONFIG_HOME     DEFAULT=@{HOME}/.config
+XDG_CACHE_HOME      DEFAULT=@{HOME}/.cache
+XDG_DATA_HOME       DEFAULT=@{HOME}/.local/share
+XDG_DATA_DIRS       DEFAULT=/usr/local/share:/usr/share
+XDG_CONFIG_DIRS     DEFAULT=/etc/xdg
+
+# Set some programs to use XDG Base Directories
+DOCKER_CONFIG       DEFAULT=${XDG_CONFIG_HOME}/docker
+GNUPGHOME           DEFAULT=${XDG_CONFIG_HOME}/gnupg
+GRADLE_USER_HOME    DEFAULT=${XDG_DATA_HOME}/gradle
+# PASSWORD_STORE_DIR  DEFAULT=${XDG_DATA_HOME}/pass
+ZDOTDIR             DEFAULT=${XDG_CONFIG_HOME}/zsh
+SECRETS             DEFAULT=${XDG_CONFIG_HOME}/secrets
+
+# Set up default programs
+VISUAL              DEFAULT=nvim
+EDITOR              DEFAULT=${VISUAL}
+BROWSER             DEFAULT=firefox
+TERMINAL            DEFAULT=alacritty
+
+# Add user-spesific bin-stuff to PATH
+PATH                DEFAULT=@{HOME}/.local/bin:${PATH}
