@@ -22,6 +22,3 @@ VISUAL              DEFAULT=nvim
 EDITOR              DEFAULT=${VISUAL}
 BROWSER             DEFAULT=firefox
 TERMINAL            DEFAULT=alacritty
-
-# Add user-spesific bin-stuff to PATH
-PATH                DEFAULT=@{HOME}/.local/bin:${PATH}
