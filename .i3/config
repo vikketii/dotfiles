@@ -26,6 +26,9 @@ exec_always --no-startup-id unclutter --timeout 5
 # Network tray icon
 exec --no-startup-id nm-applet --no-agent
 
+# Nextcloud client
+exec --no-startup-id nextcloud
+
 ############################################
 # Basic settings
 
@@ -82,7 +85,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -195,3 +198,24 @@ smart_gaps on
 #smart_borders on
 gaps inner 6
 gaps outer 0
+
+#############################################
+# Orgzly todo
+# bindsym $mod+T exec i3-sensible-terminal -t floating -e nvim ~/orgzly/inbox.org
+bindsym $mod+T exec code -n ~/orgzly/inbox.org
+
+#############################################
+# Alacritty color theme change
+set $color_dir $HOME/.config/alacritty/themes/colors
+set $light_color base16-gruvbox-light-medium.yml
+set $dark_color base16-gruvbox-dark-soft.yml
+
+# Toggle between light and dark colorscheme
+bindsym $mod+Shift+n exec alacritty-colorscheme -C $color_dir -t $light_color $dark_color -V
+
+# Toggle between all available colorscheme
+bindsym $mod+Shift+m exec alacritty-colorscheme -C $color_dir -TV
+
+# Get notification with current colorscheme
+bindsym $mod+Shift+b exec notify-send "Alacritty Colorscheme" `alacritty-colorscheme -C $color_dir -s`
+
