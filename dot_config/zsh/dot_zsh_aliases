@@ -1,0 +1,40 @@
+############################################################
+## shorts
+
+alias ls='ls --color'
+alias all='ls -Alh'
+alias up='sudo pacman -Syu'
+alias check='journalctl -p 3 -xb; sudo systemctl --failed'
+alias maim-cp='maim -s | xclip -selection clipboard -t image/png'
+alias ..='cd ..'
+alias v='nvim'
+alias vi='nvim'
+alias z='zathura'
+alias bw='bw --pretty'
+alias xclip='xclip -selection clipboard'
+alias wg-up='wg-quick up mullvadse2fi1'
+alias wg-down='wg-quick down mullvadse2fi1'
+
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+# add support for ctrl+o to open selected file in VS Code
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+
+alias vcv="cd ~/.local/share/Rack; ./Rack &"
+
+############################################################
+## improving basic programs
+
+alias vim='nvim'
+alias cat='bat'
+alias top='htop'
+alias rm='trash'
+alias ping='prettyping --nolegend'
+
+############################################################
+## git
+
+alias gcm='git commit -m'
+alias ga='git add'
+alias gs='git status'
+alias gl='git log --pretty=oneline --abbrev-commit'
+alias gc='git checkout'

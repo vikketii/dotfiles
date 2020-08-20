@@ -1,0 +1,41 @@
+# Launch todo file with vim
+funcname todo() {
+    v ~/documents/todo/todo.md
+}
+
+# Launch daily note file with vim
+funcname daily_note() {
+    FILE=~/documents/daily-notes/$(date +'%Y-%m-%d').md
+    if [ ! -f "$FILE" ]; then
+        echo "# Notes for $(date +'%A %d/%m/%Y')" > $FILE
+    fi
+    v $FILE
+}
+
+# Translate
+
+funcname enfi() { # translate from english
+    text="$@"
+    trans en:fi $text
+}
+funcname fien() { # translate from finnish
+    text="$@"
+    trans fi:en $text
+}
+funcname svfi() { # translate from swedish
+    text="$@"
+    trans sv:fi $text
+}
+funcname fisv() {
+    text="$@"
+    trans fi:sv $text
+}
+
+
+# Replace symlink with original
+
+funcname replace() {
+    link="$@"
+    cp --remove-destination "$(readlink $link)" $link
+}
+
