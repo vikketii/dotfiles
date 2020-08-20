@@ -1,0 +1,68 @@
+{
+    "window.zoomLevel": 0,
+    "files.enableTrash": false,
+    "explorer.confirmDelete": false,
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+    "editor.snippetSuggestions": "top",
+    "files.trimTrailingWhitespace": true,
+    "editor.fontFamily": "'JetBrains Mono','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback',FontAwesome",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "cSpell.enabledLanguageIds": [
+        "asciidoc",
+        "c",
+        "cpp",
+        "csharp",
+        "css",
+        "git-commit",
+        "go",
+        "handlebars",
+        "haskell",
+        "html",
+        "jade",
+        "java",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "less",
+        "markdown",
+        "php",
+        "plaintext",
+        "pug",
+        "restructuredtext",
+        "rust",
+        "scala",
+        "scss",
+        "text",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+        "yml"
+    ],
+    "[markdown]": {
+        "editor.defaultFormatter": "remimarsal.prettier-now"
+    },
+    "python.linting.flake8Enabled": true,
+    "[git-commit]": {
+        "editor.wordWrap": "wordWrapColumn"
+    },
+    "editor.wordWrapColumn": 72,
+    "window.menuBarVisibility": "toggle",
+    "workbench.statusBar.visible": true,
+    "C_Cpp.updateChannel": "Insiders",
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "workbench.iconTheme": "vscode-icons",
+    "editor.fontLigatures": true,
+    "diffEditor.ignoreTrimWhitespace": false
+}
