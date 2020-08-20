@@ -1,0 +1,115 @@
+scrolling:
+  history: 10000
+  # Scroll to the bottom when new text is written to the terminal.
+  #auto_scroll: false
+
+window:
+  padding:
+    x: 4
+    y: 4
+  dynamic_title: true
+
+font:
+  normal:
+    family: Hack Nerd Font Mono
+    #style: Regular
+  #bold:
+    #family: monospace
+    #style: Bold
+  #italic:
+    #family: monospace
+    #style: Italic
+  #bold_italic:
+    #family: monospace
+    #style: Bold Italic
+  size: 7.0
+
+#draw_bold_text_with_bright_colors: true
+
+colors:
+  # COLORSCHEME: base16-gruvbox-dark-soft.yml
+  # Default colors
+  primary:
+    background: '0x32302f'
+    foreground: '0xd5c4a1'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  normal:
+    black: '0x32302f'
+    red: '0xfb4934'
+    green: '0xb8bb26'
+    yellow: '0xfabd2f'
+    blue: '0x83a598'
+    magenta: '0xd3869b'
+    cyan: '0x8ec07c'
+    white: '0xd5c4a1'
+
+  # Bright colors
+  bright:
+    black: '0x665c54'
+    red: '0xfe8019'
+    green: '0x3c3836'
+    yellow: '0x504945'
+    blue: '0xbdae93'
+    magenta: '0xebdbb2'
+    cyan: '0xd65d0e'
+    white: '0xfbf1c7'
+
+  cursor:
+    text: '0x32302f'
+    cursor: '0xd5c4a1'
+
+  # Normal colors
+  indexed_colors:
+    - {index: 16, color: '0xaf3a03'}
+    - {index: 17, color: '0xd65d0e'}
+    - {index: 18, color: '0xebdbb2'}
+    - {index: 19, color: '0xd5c4a1'}
+    - {index: 20, color: '0x665c54'}
+    - {index: 21, color: '0x3c3836'}
+
+selection:
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+
+shell:
+  program: /bin/zsh
+
+#key_bindings:
+  # (Windows, Linux, and BSD only)
+  #- { key: V,        mods: Control|Shift, action: Paste            }
+  #- { key: C,        mods: Control|Shift, action: Copy             }
+  #- { key: Insert,   mods: Shift,         action: PasteSelection   }
+  #- { key: Key0,     mods: Control,       action: ResetFontSize    }
+  #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
+  #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+
+  # (Windows only)
+  #- { key: Return,   mods: Alt,           action: ToggleFullscreen }
+
+  # (macOS only)
+  #- { key: Key0,   mods: Command,         action: ResetFontSize    }
+  #- { key: Equals, mods: Command,         action: IncreaseFontSize }
+  #- { key: Add,    mods: Command,         action: IncreaseFontSize }
+  #- { key: Minus,  mods: Command,         action: DecreaseFontSize }
+  #- { key: K,      mods: Command,         action: ClearHistory     }
+  #- { key: K,      mods: Command,         chars: "\x0c"            }
+  #- { key: V,      mods: Command,         action: Paste            }
+  #- { key: C,      mods: Command,         action: Copy             }
+  #- { key: H,      mods: Command,         action: Hide             }
+  #- { key: M,      mods: Command,         action: Minimize         }
+  #- { key: Q,      mods: Command,         action: Quit             }
+  #- { key: W,      mods: Command,         action: Quit             }
+  #- { key: F,      mods: Command|Control, action: ToggleFullscreen }
+
+  #- { key: Paste,                    action: Paste                            }
+  #- { key: Copy,                     action: Copy                             }
+  #- { key: L,         mods: Control, action: ClearLogNotice                   }
+  #- { key: L,         mods: Control, chars: "\x0c"                            }
+  #- { key: PageUp,    mods: Shift,   action: ScrollPageUp,   mode: ~Alt       }
+  #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
+  #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
+  #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
