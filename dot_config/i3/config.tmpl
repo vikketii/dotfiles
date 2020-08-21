@@ -9,7 +9,7 @@ set $wallpaper ~/media/pics/wallpaper/wp.png
 # Start programs
 
 # machine-specific
-{{- if eq .chezmoi.hostname "tikky" }}
+{{- if eq .chezmoi.hostname "laptop-arch" }}
 # Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
@@ -173,7 +173,7 @@ bindsym $mod+P scratchpad show
 # Spesific program instructions
 
 # machine-spesific configuration
-{{- if eq .chezmoi.hostname "tikky" }}
+{{- if eq .chezmoi.hostname "laptop-arch" }}
 for_window [title="Friends List"] floating enable
 for_window [class="Steam"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
@@ -182,7 +182,7 @@ for_window [class="Spotify"] move to workspace $ws10
 ############################################
 # Added keybindings
 
-{{- if eq .chezmoi.hostname "tikky" }}
+{{- if eq .chezmoi.hostname "laptop-arch" }}
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +3% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -3% #decrease sound volume
