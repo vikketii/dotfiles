@@ -43,8 +43,8 @@ font pango:JetBrains Mono 11
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Return  exec i3-sensible-terminal
-bindsym $mod+Shift+Return exec i3-sensible-terminal -t floating
+bindsym $mod+Return  exec alacritty
+bindsym $mod+Shift+Return exec alacritty -t floating
 for_window [class="Alacritty" title="floating"] floating enable
 
 bindsym $mod+Shift+q kill
