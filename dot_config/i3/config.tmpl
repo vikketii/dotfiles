@@ -8,6 +8,8 @@ set $wallpaper ~/media/pics/wallpaper/wp.png
 ############################################
 # Start programs
 
+# machine-specific
+{{- if eq .chezmoi.hostname "tikky" }}
 # Polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
@@ -17,24 +19,26 @@ exec --no-startup-id $compositor
 # PrintScreen key to Left Super key
 exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
 
+# Network tray icon
+exec --no-startup-id nm-applet --no-agent
+
+# Nextcloud client
+exec --no-startup-id nextcloud
+{{- end }}
+
 # Change keyboard layout uk/fi and change capslock to ctrl
 exec --no-startup-id setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle" -option ctrl:nocaps
 
 # Hide mouse after n seconds with unclutter
 exec_always --no-startup-id unclutter --timeout 5
 
-# Network tray icon
-exec --no-startup-id nm-applet --no-agent
-
-# Nextcloud client
-exec --no-startup-id nextcloud
 
 ############################################
 # Basic settings
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Hack 11
+font pango:JetBrains Mono 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -46,7 +50,7 @@ for_window [class="Alacritty" title="floating"] floating enable
 bindsym $mod+Shift+q kill
 
 # disable Control+q
-bindsym Control+q    exec /bin/false
+bindsym Control+q exec /bin/false
 
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec --no-startup-id rofi -show ssh
@@ -168,28 +172,34 @@ bindsym $mod+P scratchpad show
 ############################################
 # Spesific program instructions
 
+# machine-spesific configuration
+{{- if eq .chezmoi.hostname "tikky" }}
 for_window [title="Friends List"] floating enable
 for_window [class="Steam"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
+{{- end }}
 
 ############################################
 # Added keybindings
 
+{{- if eq .chezmoi.hostname "tikky" }}
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +3% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -3% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
-# Media player controls
-bindsym $mod+Control+Down  exec playerctl play-pause
-bindsym $mod+Control+Right exec playerctl next
-bindsym $mod+Control+Left  exec playerctl previous
-
+# Brightness
 bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 # Lock the screen
 bindsym $mod+x exec i3lock -ef -i $wallpaper
+{{- end }}
+
+# Media player controls
+bindsym $mod+Control+Down  exec playerctl play-pause
+bindsym $mod+Control+Right exec playerctl next
+bindsym $mod+Control+Left  exec playerctl previous
 
 #############################################
 # Gaps
@@ -199,10 +209,6 @@ smart_gaps on
 gaps inner 6
 gaps outer 0
 
-#############################################
-# Orgzly todo
-# bindsym $mod+T exec i3-sensible-terminal -t floating -e nvim ~/orgzly/inbox.org
-bindsym $mod+T exec code -n ~/orgzly/inbox.org
 
 #############################################
 # Alacritty color theme change
@@ -212,10 +218,4 @@ set $dark_color base16-gruvbox-dark-soft.yml
 
 # Toggle between light and dark colorscheme
 bindsym $mod+Shift+n exec alacritty-colorscheme -C $color_dir -t $light_color $dark_color -V
-
-# Toggle between all available colorscheme
-bindsym $mod+Shift+m exec alacritty-colorscheme -C $color_dir -TV
-
-# Get notification with current colorscheme
-bindsym $mod+Shift+b exec notify-send "Alacritty Colorscheme" `alacritty-colorscheme -C $color_dir -s`
 
