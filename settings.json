@@ -64,5 +64,6 @@
     "workbench.colorTheme": "Gruvbox Dark Medium",
     "workbench.iconTheme": "vscode-icons",
     "editor.fontLigatures": true,
-    "diffEditor.ignoreTrimWhitespace": false
+    "diffEditor.ignoreTrimWhitespace": false,
+    "python.showStartPage": false
 }
