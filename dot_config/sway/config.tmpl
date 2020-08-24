@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "laptop-arch" }}
+{{- if eq .chezmoi.hostname "desktop-fedora" }}
 
 #############################################
 # Variables
@@ -10,18 +10,6 @@ set $wallpaper ~/media/pics/wallpaper/wp.png
 
 ############################################
 # Start programs
-
-# Polybar
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-# X compositor to improve various graphic things
-exec --no-startup-id $compositor
-
-# PrintScreen key to Left Super key
-exec_always --no-startup-id xmodmap -e "keysym Print = Super_L"
-
-# Network tray icon
-exec --no-startup-id nm-applet --no-agent
 
 # Change keyboard layout uk/fi and change capslock to ctrl
 exec --no-startup-id setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle" -option ctrl:nocaps
@@ -178,18 +166,6 @@ for_window [class="Spotify"] move to workspace $ws10
 ############################################
 # Added keybindings
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +3% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -3% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Brightness
-bindsym XF86MonBrightnessUp   exec --no-startup-id light -A 5
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
-
-# Lock the screen
-bindsym $mod+x exec i3lock -ef -i $wallpaper
-
 # Media player controls
 bindsym $mod+Control+Down  exec playerctl play-pause
 bindsym $mod+Control+Right exec playerctl next
@@ -214,4 +190,5 @@ set $dark_color base16-gruvbox-dark-soft.yml
 # Toggle between light and dark colorscheme
 bindsym $mod+Shift+n exec alacritty-colorscheme -C $color_dir -t $light_color $dark_color -V
 
-{{ end }}
+
+{{- end }}
