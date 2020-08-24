@@ -12,10 +12,10 @@ set $wallpaper ~/media/pics/wallpaper/wp.png
 # Start programs
 
 # Change keyboard layout uk/fi and change capslock to ctrl
-exec --no-startup-id setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle" -option ctrl:nocaps
+exec setxkbmap -layout "gb,fi" -option "grp:ctrls_toggle" -option ctrl:nocaps
 
 # Hide mouse after n seconds with unclutter
-exec_always --no-startup-id unclutter --timeout 5
+exec_always unclutter --timeout 5
 
 
 ############################################
@@ -37,8 +37,8 @@ bindsym $mod+Shift+q kill
 # disable Control+q
 bindsym Control+q exec /bin/false
 
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+Shift+d exec --no-startup-id rofi -show ssh
+bindsym $mod+d exec rofi -show run
+bindsym $mod+Shift+d exec rofi -show ssh
 
 # change focus
 bindsym $mod+h focus left
@@ -115,10 +115,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart inplace
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# exit
+bindsym $mod+Shift+e exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -137,7 +137,7 @@ bindsym $mod+r mode "resize"
 for_window [class="^.*"] border pixel 6
 
 # wallpaper
-exec_always --no-startup-id feh --bg-scale $wallpaper
+exec_always feh --bg-scale $wallpaper
 
 hide_edge_borders smart
 

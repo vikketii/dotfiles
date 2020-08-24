@@ -1,3 +1,5 @@
+{{- if eq .chezmoi.hostname "laptop-arch" }}
+
 # Backend to use: "xrender" or "glx".
 # GLX backend is typically much faster but depends on a sane driver.
 backend = "glx";
@@ -14,3 +16,5 @@ vsync = true;
 # Enable DBE painting mode, intended to use with VSync to (hopefully) eliminate tearing.
 # Reported to have no effect, though.
 dbe = false;
+
+{{ end }}
