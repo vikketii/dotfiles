@@ -20,28 +20,31 @@
         org-agenda-custom-commands
         '(("x" "Agenda, TODAY and NEXT"
            ((agenda "")
-            (tags "today")
+            (tags "today" )
             (tags "next"))))
         org-tag-alist '(("today" . ?t) ("next" . ?n))
         org-fast-tag-selection-single-key t
         org-hide-emphasis-markers t
         org-startup-folded 'content
+        ;;org-show-context-detail '(agenda . ancestors)
         )
   )
 
+;; Latex configs
+(setq pdf-latex-command "latexmk"
+      +latex-viewers '(zathura))
+
 (custom-set-faces!
-  '(outline-1 :height 1.24)
-  '(outline-2 :height 1.16 :foreground "cyan")
-  '(outline-3 :height 1.10)
-  '(outline-4 :height 1.06)
-  '(outline-5 :height 1.04)
-  '(outline-6 :height 1.02))
+  '(outline-1 :height 1.20)
+  '(outline-2 :height 1.08 :foreground "orange"))
 
 ;; Custom mappings
 (map! :mode org-mode
       :n "C-t" 'org-todo
       :n "g l" 'org-down-element)
 
+(map! :mode org-agenda-mode
+      :n "C-t" 'org-todo)
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
