@@ -45,8 +45,8 @@ font-1 = unifont:fontformat=truetype:size=9:antialias=false;0
 font-2 = siji:pixelsize=11;1
 font-3 = fontawesome:size=11;0
 
-modules-left = i3 
-modules-center = polypomo spotify
+modules-left = i3 polypomo 
+modules-center = spotify
 modules-right = pulseaudio backlight xkeyboard cpu wlan eth battery0 battery1 date
 
 tray-position = right
