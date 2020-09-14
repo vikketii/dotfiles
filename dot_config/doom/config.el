@@ -46,6 +46,8 @@
 (map! :mode org-agenda-mode
       :n "C-t" 'org-todo)
 
+(map! :i "C-å" 'evil-normal-state)
+
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
 ;;
