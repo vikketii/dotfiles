@@ -9,22 +9,15 @@ window:
     y: 4
   dynamic_title: true
 
+{{- if eq .chezmoi.hostname "laptop-arch" }}
 font:
   normal:
     family: Hack Nerd Font Mono
-    #style: Regular
-  #bold:
-    #family: monospace
-    #style: Bold
-  #italic:
-    #family: monospace
-    #style: Italic
-  #bold_italic:
-    #family: monospace
-    #style: Bold Italic
-{{- if eq .chezmoi.hostname "laptop-arch" }}
   size: 7.0
 {{- else if eq .chezmoi.hostname "desktop-fedora" }}
+font:
+  normal:
+    family: JetBrains Mono
   size: 10.0
 {{ end }}
 
