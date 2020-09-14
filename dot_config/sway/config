@@ -1,4 +1,4 @@
-{{- if eq .chezmoi.hostname "desktop-fedora" }}
+
 
 #############################################
 # Variables
@@ -110,7 +110,6 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+r reload
-
 # exit
 bindsym $mod+Shift+e exit
 
@@ -197,5 +196,3 @@ bindsym $mod+Shift+n exec alacritty-colorscheme -C $color_dir -t $light_color $d
 bar {
   swaybar_command waybar
 }
-
-{{- end }}
