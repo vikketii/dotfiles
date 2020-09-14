@@ -5,8 +5,8 @@ My dotfile setup managed with [chezmoi](github.com/twpayne/chezmoi). Includes co
 ## Programs
 - shell: zsh
 - terminal: alacritty
-- editor: vscode, spacemacs
+- editor: doom emacs, vscode
 - window manager: i3-gaps on laptop, sway on desktop
 
 ## Influence
-- [otahontas' dotfile setup](github.com/otahontas/dotfiles)
+- [otahontas' dotfile setup](https://github.com/otahontas/dotfiles)
