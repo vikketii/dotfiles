@@ -3,6 +3,10 @@ if [[ -d "${HOME}/.local/bin" ]]; then
   PATH="${HOME}/.local/bin:${PATH}"
 fi
 
+if [[ -d "${HOME}/.emacs.d/bin" ]]; then
+  PATH="${HOME}/.emacs.d/bin:${PATH}"
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
