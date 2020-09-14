@@ -22,7 +22,11 @@ font:
   #bold_italic:
     #family: monospace
     #style: Bold Italic
+{{- if eq .chezmoi.hostname "laptop-arch" }}
   size: 7.0
+{{- else if eq .chezmoi.hostname "desktop-fedora" }}
+  size: 10.0
+{{ end }}
 
 #draw_bold_text_with_bright_colors: true
 
